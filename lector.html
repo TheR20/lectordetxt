@@ -1,0 +1,52 @@
+<html> <body>
+  <input type="text" name="txtJob" id= "txtJob" value="software engineer">
+    <input type="file" id="filesx" name="filesx[]"
+      onchange="readmultifiles(this.files)" multiple=""/>
+    <div id="bag"></div>
+<script>
+window.onload = function() {
+    if (typeof window.FileReader !== 'function') {
+        alert("The file API isn't supported on this browser yet.");
+    }
+}
+
+function readmultifiles(files) {
+  var reader = new FileReader();
+  var jobValue = document.getElementById('txtJob').value
+  function readFile(index) {
+    if( index >= files.length ) return;
+    var file = files[index];
+    reader.onload = function(e) {
+      // get file content
+      var bin = e.target.result;
+      // do sth with bin
+      readFile(index+1)
+    }
+    reader.readAsBinaryString(file);
+  }
+  readFile(0);
+
+ function setup_reader(file) {
+        var name = file.name;
+        var reader = new FileReader();
+
+            var ul = document.createElement("ul");
+            document.getElementById('bag').appendChild(ul);
+        reader.onload = function(e) {
+            var bin = e.target.result; //get file content
+//EAAIsHemtWyEBAKz0U5yANEABnWXHtgbTz5zZBBqPQx8dYGPY6zwAqmDfaZA8Nkgd9vGVfoAvXRxshlVIihP5BZBFZBzkp0udNx9lUByyet0nxDZBBhtQnbjeVDYxK2w8a7kEPoF4fQYWpmUgVqiqt7QnN4NkAF8x5juV95v0oMqtRdoBYVFKs4Ej2yPJCLrwZD
+          //  let text = "Mr. Blue has a blue house";jobValue
+              let position = bin.search(jobValue);
+            // do sth with text
+              var li = document.createElement("li");
+            if(position != -1){
+                  li.innerHTML = name;
+            }
+            ul.appendChild(li);
+        }
+        reader.readAsBinaryString(file);
+    }
+
+    for (var i = 0; i < files.length; i++) { setup_reader(files[i]); }
+}
+</script> </body> </html>
