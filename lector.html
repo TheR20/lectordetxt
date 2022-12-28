@@ -1,5 +1,11 @@
-<html> <body>
-  <input type="text" name="txtJob" id= "txtJob" value="software engineer">
+<html>
+<head>
+  <link rel="stylesheet" href="css.css">
+</head>
+<body>
+  <input type="text" name="txtJob" id= "txtJob" value="Pon tu token aqui">
+  <br>
+  <br>
     <input type="file" id="filesx" name="filesx[]"
       onchange="readmultifiles(this.files)" multiple=""/>
     <div id="bag"></div>
@@ -35,18 +41,17 @@ function readmultifiles(files) {
         reader.onload = function(e) {
             var bin = e.target.result; //get file content
 //EAAIsHemtWyEBAKz0U5yANEABnWXHtgbTz5zZBBqPQx8dYGPY6zwAqmDfaZA8Nkgd9vGVfoAvXRxshlVIihP5BZBFZBzkp0udNx9lUByyet0nxDZBBhtQnbjeVDYxK2w8a7kEPoF4fQYWpmUgVqiqt7QnN4NkAF8x5juV95v0oMqtRdoBYVFKs4Ej2yPJCLrwZD
-          //  let text = "Mr. Blue has a blue house";jobValue
+              //Agarramos el valor del textbox
               let position = bin.search(jobValue);
-            // do sth with text
               var li = document.createElement("li");
+              //Si existe el string agrega el nombre del archivo donde lo encontro
             if(position != -1){
                   li.innerHTML = name;
+                  ul.appendChild(li);
             }
-            ul.appendChild(li);
         }
         reader.readAsBinaryString(file);
     }
-
     for (var i = 0; i < files.length; i++) { setup_reader(files[i]); }
 }
 </script> </body> </html>
